@@ -7,6 +7,17 @@
 #
 ################################################################################
 
+
+# Versioning
+#
+# For the ease of seamless reuse of this here we have all the versions numbers
+#
+################################################################################
+
+FISSION_VER="0.11.0"
+FISSION_WORKFLOWS_VER="0.5.0"
+
+
 echo "Starting refresh..."
 
 
