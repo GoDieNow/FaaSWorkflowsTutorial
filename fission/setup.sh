@@ -18,10 +18,10 @@
 #
 ################################################################################
 
-MINIKUBE_VER-M=0.29
-MINIKUBE_VER-m=0
-FISSION_VER=0.11.0
-FISSION_WORKFLOWS_VER=
+MINIKUBE_VER_M="0.29"
+MINIKUBE_VER_m="0"
+FISSION_VER="0.11.0"
+FISSION_WORKFLOWS_VER="0.5.0"
 
 echo "Starting install..."
 echo "Dependeing on the connection and your device this might take a few minutes..."
@@ -59,7 +59,7 @@ sudo touch /etc/apt/sources.list.d/kubernetes.list
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 
 # minikube
-curl -Lo minikube.deb https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_VER-M}.${MINIKUBE_VER-m}/minikube_${MINIKUBE_VER-M}-${MINIKUBE_VER-m}.deb
+curl -Lo minikube.deb https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_VER_M}.${MINIKUBE_VER_m}/minikube_${MINIKUBE_VER_M}-${MINIKUBE_VER_m}.deb
 
 # Helm
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
