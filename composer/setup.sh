@@ -51,7 +51,7 @@ bx plugin install Cloud-Functions -r bluemix
 ################################################################################
 
 echo "Installing the fsh shell..."
-npm install -g @ibm-functions/shell --unsafe-perm=true
+sudo npm install -g @ibm-functions/shell --unsafe-perm=true
 
 
 # Clean up
