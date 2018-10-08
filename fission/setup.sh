@@ -91,7 +91,7 @@ echo "Downloading Fission and Fission Workflows CLI binaries..."
 curl -Lo fission https://github.com/fission/fission/releases/download/${FISSION_VER}/fission-cli-linux
 
 # Fission-workflows CLI
-curl -o fission-workflows https://github.com/fission/fission-workflows/releases/download/${FISSION_WORKFLOWS_VER}/wfcli-linux
+curl -Lo fission-workflows https://github.com/fission/fission-workflows/releases/download/${FISSION_WORKFLOWS_VER}/wfcli-linux
 
 echo "Installing Fission and Fission Workflows CLI..."
 chmod +x fission{,-workflows}
