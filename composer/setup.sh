@@ -16,7 +16,8 @@ echo "Dependeing on the connection and your device this might take a couple of m
 
 # Pre-requisites:
 #
-# For the FSH Shell to work we will need to have NodeJS/NPM installed.
+# For the FSH Shell to work we will need to have NodeJS/NPM installed and in a
+# just-installed Ubuntu18 will also need: libgconf-2.so.4
 #
 ################################################################################
 
@@ -25,7 +26,7 @@ curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 
 echo "Installing pre-requisites..."
-sudo apt install -y nodejs
+sudo apt install -y nodejs libgconf-2-4
 
 
 # IBM Cloud CLI and pluggins:
