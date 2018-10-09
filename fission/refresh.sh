@@ -18,7 +18,7 @@ FISSION_VER="0.11.0"
 FISSION_WORKFLOWS_VER="0.5.0"
 
 
-echo "Starting refresh..."
+echo "$(tput setaf 1)Starting refresh...$(tput sgr 0)"
 
 
 # Stoping and  cleaning the system
@@ -28,16 +28,16 @@ echo "Starting refresh..."
 #
 ################################################################################
 
-echo "Stoping, killing, and erasing the minikube..."
+echo "$(tput setaf 1)Stoping, killing, and erasing the minikube...$(tput sgr 0)"
 minikube stop
 minikube delete
 rm -rf ~/.minikube
 
-echo "Erasing helm..."
+echo "$(tput setaf 1)Erasing helm...$(tput sgr 0)"
 rm -rf ~/.helm
 
 
-echo "Restarting the environment..."
+echo "$(tput setaf 1)Restarting the environment...$(tput sgr 0)"
 
 
 # Starting the engines..
@@ -46,11 +46,11 @@ echo "Restarting the environment..."
 #
 ################################################################################
 
-echo "Starting the minikube..."
+echo "$(tput setaf 1)Starting the minikube...$(tput sgr 0)"
 # Minikube
 minikube start
 
-echo "Initialising helm..."
+echo "$(tput setaf 1)Initialising helm...$(tput sgr 0)"
 # Helm
 helm init
 
@@ -77,19 +77,19 @@ done
 #
 ################################################################################
 
-echo "Adding Fission charts..."
+echo "$(tput setaf 1)Adding Fission charts...$(tput sgr 0)"
 helm repo add fission-charts https://fission.github.io/fission-charts/
 helm repo update
 
-echo "Initialising Fission..."
+echo "$(tput setaf 1)Initialising Fission...$(tput sgr 0)"
 helm install --wait --debug --namespace fission -n fission fission-charts/fission-all --version ${FISSION_VER} --set serviceType=NodePort,routerServiceType=NodePort
 sleep 30
 
-echo "Initialising Fission Workflows..."
+echo "$(tput setaf 1)Initialising Fission Workflows...$(tput sgr 0)"
 helm install --wait --debug --namespace fission -n fission-workflows fission-charts/fission-workflows --version ${FISSION_WORKFLOWS_VER}
 sleep 30
 
-echo "Setting env variables..."
+echo "$(tput setaf 1)Setting env variables...$(tput sgr 0)"
 export FISSION_ROUTER=$(minikube ip):$(kubectl -n fission get svc router -o jsonpath='{...nodePort}')
 
-echo "System refresh done! System ready!"
+echo "$(tput setaf 1)System refresh done! System ready!$(tput sgr 0)"
