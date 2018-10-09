@@ -39,7 +39,7 @@ echo "Updating sources..."
 sudo apt update
 
 echo "Installing pre-requisites..."
-sudo apt install -y apt-transport-https virtualbox virtualbox-ext-pack
+sudo apt install -y apt-transport-https curl virtualbox virtualbox-ext-pack
 
 
 # Kubernetes
