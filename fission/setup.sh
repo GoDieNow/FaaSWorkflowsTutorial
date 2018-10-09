@@ -23,7 +23,7 @@ MINIKUBE_VER_m="0"
 FISSION_VER="0.11.0"
 FISSION_WORKFLOWS_VER="0.5.0"
 
-echo "Starting install..."
+echo "$(tput setaf 1)Starting install..."
 echo "Dependeing on the connection and your device this might take a few minutes..."
 
 
@@ -35,10 +35,10 @@ echo "Dependeing on the connection and your device this might take a few minutes
 #
 ################################################################################
 
-echo "Updating sources..."
+echo "Updating sources...$(tput sgr 0)"
 sudo apt update
 
-echo "Installing pre-requisites..."
+echo "$(tput setaf 1)Installing pre-requisites...$(tput sgr 0)"
 sudo apt install -y apt-transport-https curl virtualbox virtualbox-ext-pack
 
 
@@ -51,7 +51,7 @@ sudo apt install -y apt-transport-https curl virtualbox virtualbox-ext-pack
 #
 ################################################################################
 
-echo "Adding sources and downloading .deb packages..."
+echo "$(tput setaf 1)Adding sources and downloading .deb packages...$(tput sgr 0)"
 
 # kubectl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
@@ -65,16 +65,16 @@ curl -Lo minikube.deb https://github.com/kubernetes/minikube/releases/download/v
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
 chmod 700 get_helm.sh
 
-echo "Updating sources..."
+echo "$(tput setaf 1)Updating sources...$(tput sgr 0)"
 sudo apt update
 
-echo "Installing kubectl..."
+echo "$(tput setaf 1)Installing kubectl...$(tput sgr 0)"
 sudo apt install -y kubectl
 
-echo "Installing minikube..."
+echo "$(tput setaf 1)Installing minikube...$(tput sgr 0)"
 sudo dpkg -i minikube.deb
 
-echo "Installing helm..."
+echo "$(tput setaf 1)Installing helm...$(tput sgr 0)"
 sudo get_helm.sh
 
 
@@ -85,7 +85,7 @@ sudo get_helm.sh
 #
 ################################################################################
 
-echo "Downloading Fission and Fission Workflows CLI binaries..."
+echo "$(tput setaf 1)Downloading Fission and Fission Workflows CLI binaries...$(tput sgr 0)"
 
 # Fission CLI
 curl -Lo fission https://github.com/fission/fission/releases/download/${FISSION_VER}/fission-cli-linux
@@ -93,7 +93,7 @@ curl -Lo fission https://github.com/fission/fission/releases/download/${FISSION_
 # Fission-workflows CLI
 curl -Lo fission-workflows https://github.com/fission/fission-workflows/releases/download/${FISSION_WORKFLOWS_VER}/wfcli-linux
 
-echo "Installing Fission and Fission Workflows CLI..."
+echo "$(tput setaf 1)Installing Fission and Fission Workflows CLI...$(tput sgr 0)"
 chmod +x fission{,-workflows}
 sudo mv fission{,-workflows} /usr/local/bin/
 
@@ -104,11 +104,11 @@ sudo mv fission{,-workflows} /usr/local/bin/
 #
 ################################################################################
 
-echo "Starting the minikube..."
+echo "$(tput setaf 1)Starting the minikube...$(tput sgr 0)"
 # Minikube
 minikube start
 
-echo "Initialising helm..."
+echo "$(tput setaf 1)Initialising helm...$(tput sgr 0)"
 # Helm
 helm init
 
@@ -135,19 +135,19 @@ done
 #
 ################################################################################
 
-echo "Adding Fission charts..."
+echo "$(tput setaf 1)Adding Fission charts...$(tput sgr 0)"
 helm repo add fission-charts https://fission.github.io/fission-charts/
 helm repo update
 
-echo "Initialising Fission..."
+echo "$(tput setaf 1)Initialising Fission...$(tput sgr 0)"
 helm install --wait --debug --namespace fission -n fission fission-charts/fission-all --version ${FISSION_VER} --set serviceType=NodePort,routerServiceType=NodePort
 sleep 30
 
-echo "Initialising Fission Workflows..."
+echo "$(tput setaf 1)Initialising Fission Workflows...$(tput sgr 0)"
 helm install --wait --debug --namespace fission -n fission-workflows fission-charts/fission-workflows --version ${FISSION_WORKFLOWS_VER}
 sleep 30
 
-echo "Setting env variables..."
+echo "$(tput setaf 1)Setting env variables...$(tput sgr 0)"
 export FISSION_ROUTER=$(minikube ip):$(kubectl -n fission get svc router -o jsonpath='{...nodePort}')
 
 
@@ -158,7 +158,7 @@ export FISSION_ROUTER=$(minikube ip):$(kubectl -n fission get svc router -o json
 #
 ################################################################################
 
-echo "Cleaning temp files..."
+echo "$(tput setaf 1)Cleaning temp files...$(tput sgr 0)"
 
 # Minikube
 rm -rf minikube.deb
@@ -166,4 +166,4 @@ rm -rf minikube.deb
 # Helm
 rm -rf get_helm.sh
 
-echo "System ready!"
+echo "$(tput setaf 1)System ready!$(tput sgr 0)"
