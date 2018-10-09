@@ -10,8 +10,8 @@
 #
 ################################################################################
 
-echo "Starting install..."
-echo "Dependeing on the connection and your device this might take a couple of minutes..."
+echo "$(tput setaf 1)Starting install...$(tput sgr 0)"
+echo "$(tput setaf 1)Dependeing on the connection and your device this might take a couple of minutes...$(tput sgr 0)"
 
 
 # Pre-requisites:
@@ -21,11 +21,11 @@ echo "Dependeing on the connection and your device this might take a couple of m
 #
 ################################################################################
 
-echo "Updating sources..."
+echo "$(tput setaf 1)Updating sources...$(tput sgr 0)"
 curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 
-echo "Installing pre-requisites..."
+echo "$(tput setaf 1)Installing pre-requisites...$(tput sgr 0)"
 sudo apt install -y nodejs libgconf-2-4
 
 
@@ -37,10 +37,10 @@ sudo apt install -y nodejs libgconf-2-4
 #
 ################################################################################
 
-echo "Installing the IBM Cloud CLI..."
+echo "$(tput setaf 1)Installing the IBM Cloud CLI...$(tput sgr 0)"
 curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
 
-echo "Installing the Cloud-Functions pluggin..."
+echo "$(tput setaf 1)Installing the Cloud-Functions pluggin...$(tput sgr 0)"
 bx plugin install Cloud-Functions -r bluemix
 
 # FSH Shell:
@@ -51,7 +51,7 @@ bx plugin install Cloud-Functions -r bluemix
 #
 ################################################################################
 
-echo "Installing the fsh shell..."
+echo "$(tput setaf 1)Installing the fsh shell...$(tput sgr 0)"
 sudo npm install -g @ibm-functions/shell --unsafe-perm=true
 
 
@@ -62,9 +62,9 @@ sudo npm install -g @ibm-functions/shell --unsafe-perm=true
 #
 ################################################################################
 
-echo "Cleaning temp files..."
+echo "$(tput setaf 1)Cleaning temp files...$(tput sgr 0)"
 
 # NodeJS
 rm -rf nodesource_setup.sh
 
-echo "System ready!"
+echo "$(tput setaf 1)System ready!$(tput sgr 0)"
