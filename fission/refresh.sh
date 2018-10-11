@@ -8,6 +8,16 @@
 ################################################################################
 
 
+# Colouring
+#
+# A few variables to compact the colouring of the echos..
+#
+################################################################################
+
+readonly reset=$(tput sgr0)
+readonly alert=$(tput bold; tput setaf 10)
+
+
 # Versioning
 #
 # For the ease of seamless reuse of this here we have all the versions numbers
@@ -18,7 +28,7 @@ FISSION_VER="0.11.0"
 FISSION_WORKFLOWS_VER="0.5.0"
 
 
-echo "$(tput setaf 1)Starting refresh...$(tput sgr 0)"
+echo "$alert > Starting refresh...$reset"
 
 
 # Stoping and  cleaning the system
@@ -28,16 +38,16 @@ echo "$(tput setaf 1)Starting refresh...$(tput sgr 0)"
 #
 ################################################################################
 
-echo "$(tput setaf 1)Stoping, killing, and erasing the minikube...$(tput sgr 0)"
+echo "$alert > Stoping, killing, and erasing the minikube...$reset"
 minikube stop
 minikube delete
 rm -rf ~/.minikube
 
-echo "$(tput setaf 1)Erasing helm...$(tput sgr 0)"
+echo "$alert > Erasing helm...$reset"
 rm -rf ~/.helm
 
 
-echo "$(tput setaf 1)Restarting the environment...$(tput sgr 0)"
+echo "$alert > Restarting the environment...$reset"
 
 
 # Starting the engines..
@@ -46,11 +56,11 @@ echo "$(tput setaf 1)Restarting the environment...$(tput sgr 0)"
 #
 ################################################################################
 
-echo "$(tput setaf 1)Starting the minikube...$(tput sgr 0)"
+echo "$alert > Starting the minikube...$reset"
 # Minikube
 minikube start
 
-echo "$(tput setaf 1)Initialising helm...$(tput sgr 0)"
+echo "$alert > Initialising helm...$reset"
 # Helm
 helm init
 
@@ -77,19 +87,19 @@ done
 #
 ################################################################################
 
-echo "$(tput setaf 1)Adding Fission charts...$(tput sgr 0)"
+echo "$alert > Adding Fission charts...$reset"
 helm repo add fission-charts https://fission.github.io/fission-charts/
 helm repo update
 
-echo "$(tput setaf 1)Initialising Fission...$(tput sgr 0)"
+echo "$alert > Initialising Fission...$reset"
 helm install --wait --debug --namespace fission -n fission fission-charts/fission-all --version ${FISSION_VER} --set serviceType=NodePort,routerServiceType=NodePort
 sleep 30
 
-echo "$(tput setaf 1)Initialising Fission Workflows...$(tput sgr 0)"
+echo "$alert > Initialising Fission Workflows...$reset"
 helm install --wait --debug --namespace fission -n fission-workflows fission-charts/fission-workflows --version ${FISSION_WORKFLOWS_VER}
 sleep 30
 
-echo "$(tput setaf 1)Setting env variables...$(tput sgr 0)"
+echo "$alert > Setting env variables...$reset"
 export FISSION_ROUTER=$(minikube ip):$(kubectl -n fission get svc router -o jsonpath='{...nodePort}')
 
-echo "$(tput setaf 1)System refresh done! System ready!$(tput sgr 0)"
+echo "$alert > System refresh done! System ready!$reset"

@@ -10,8 +10,19 @@
 #
 ################################################################################
 
-echo "$(tput setaf 1)Starting install...$(tput sgr 0)"
-echo "$(tput setaf 1)Dependeing on the connection and your device this might take a couple of minutes...$(tput sgr 0)"
+
+# Colouring
+#
+# A few variables to compact the colouring of the echos..
+#
+################################################################################
+
+readonly reset=$(tput sgr0)
+readonly alert=$(tput bold; tput setaf 10)
+
+
+echo "$alert > Starting install...$reset"
+echo "$alert > Dependeing on the connection and your device this might take a couple of minutes...$reset"
 
 
 # Pre-requisites:
@@ -21,11 +32,11 @@ echo "$(tput setaf 1)Dependeing on the connection and your device this might tak
 #
 ################################################################################
 
-echo "$(tput setaf 1)Updating sources...$(tput sgr 0)"
+echo "$alert > Updating sources...$reset"
 curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 
-echo "$(tput setaf 1)Installing pre-requisites...$(tput sgr 0)"
+echo "$alert > Installing pre-requisites...$reset"
 sudo apt install -y nodejs libgconf-2-4
 
 
@@ -37,10 +48,10 @@ sudo apt install -y nodejs libgconf-2-4
 #
 ################################################################################
 
-echo "$(tput setaf 1)Installing the IBM Cloud CLI...$(tput sgr 0)"
+echo "$alert > Installing the IBM Cloud CLI...$reset"
 curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
 
-echo "$(tput setaf 1)Installing the Cloud-Functions pluggin...$(tput sgr 0)"
+echo "$alert > Installing the Cloud-Functions pluggin...$reset"
 bx plugin install Cloud-Functions -r bluemix
 
 # FSH Shell:
@@ -51,7 +62,7 @@ bx plugin install Cloud-Functions -r bluemix
 #
 ################################################################################
 
-echo "$(tput setaf 1)Installing the fsh shell...$(tput sgr 0)"
+echo "$alert > Installing the fsh shell...$reset"
 sudo npm install -g @ibm-functions/shell --unsafe-perm=true
 
 
@@ -62,9 +73,9 @@ sudo npm install -g @ibm-functions/shell --unsafe-perm=true
 #
 ################################################################################
 
-echo "$(tput setaf 1)Cleaning temp files...$(tput sgr 0)"
+echo "$alert > Cleaning temp files...$reset"
 
 # NodeJS
 rm -rf nodesource_setup.sh
 
-echo "$(tput setaf 1)System ready!$(tput sgr 0)"
+echo "$alert > System ready!$reset"
