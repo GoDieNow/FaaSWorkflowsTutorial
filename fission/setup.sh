@@ -49,7 +49,7 @@ echo "$alert > Updating sources...$reset"
 sudo apt update
 
 echo "$alert > Installing pre-requisites...$reset"
-sudo apt install -y apt-transport-https curl virtualbox virtualbox-ext-pack
+sudo apt install -y apt-transport-https curl jq virtualbox virtualbox-ext-pack
 
 
 # Kubernetes

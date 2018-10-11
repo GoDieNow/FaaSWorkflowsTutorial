@@ -37,7 +37,7 @@ curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 
 echo "$alert > Installing pre-requisites...$reset"
-sudo apt install -y nodejs libgconf-2-4
+sudo apt install -y jq libgconf-2-4 nodejs
 
 
 # IBM Cloud CLI and pluggins:
