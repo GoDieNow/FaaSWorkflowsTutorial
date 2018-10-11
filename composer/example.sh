@@ -9,6 +9,11 @@
 #
 #   $> bx login
 #
+# NOTE: Remember that the free tier of Bluemix right now only let you play with
+# the eu-gb region! And also that you need to set properly the Cloud Foundry
+# organization (usually your username by default) and create a space beforehand
+# at: https://console.bluemix.net/openwhisk/learn/cli
+#
 # Author: Diego Martin (October 2018)
 #
 ################################################################################
