@@ -17,3 +17,16 @@
 # Author: Diego Martin (October 2018)
 #
 ################################################################################
+
+
+# Common bash functions
+#
+# Since the front for the example is the same in this and in the other example
+# a few things are in a different file that we will source
+#
+################################################################################
+
+source ../src/front_functions.sh
+
+
+#
