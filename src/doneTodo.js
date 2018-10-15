@@ -28,9 +28,11 @@ function main(params) {
 
     }
 
+    if (!data.done) {
+        data.done = {};
+    }
+
     data.done[params.action.done] = todo;
 
-    return Object.assign(params,
-        { "data": data }
-    );
+    return { "data": data };
 };
