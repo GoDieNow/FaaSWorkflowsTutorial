@@ -9,6 +9,10 @@
 
 function main(params) {
 
-    return params;
+    return Object.assign(
+        { "data": params.data },
+        { "result": params.result },
+        { "error": params.error }
+    );
 
 };
