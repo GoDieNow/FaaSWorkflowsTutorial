@@ -28,9 +28,11 @@ function main(params) {
 
     }
 
+    if (!data.wip) {
+        data.wip = {};
+    }
+
     data.wip[params.action.wip] = todo;
 
-    return Object.assign(params,
-        { "data": data }
-    );
+    return { "data": data };
 };
