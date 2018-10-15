@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 composer.sequence('FWTt/getTodos',
-    composer.if(params => params.action,
+    composer.if(params => (!!params.action) && (params.action.constructor === Object),
         composer.sequence(
             composer.if(params => params.action.add || params.action.del,
                 composer.if(params => params.action.add,
@@ -21,6 +21,7 @@ composer.sequence('FWTt/getTodos',
             ),
             'FWTt/updateTodos'
         ),
+        composer.empty()
     ),
     'FWTt/showTodos'
 );
