@@ -15,7 +15,5 @@ function main(params) {
     delete data.wip[params.action.del];
     delete data.done[params.action.del];
 
-    return Object.assign(params,
-        { "data": data }
-    );
+    return { "data": data };
 };
