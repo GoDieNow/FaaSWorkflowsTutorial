@@ -25,7 +25,7 @@ readonly alert=$(tput bold; tput setaf 10)
 ################################################################################
 
 FISSION_VER="0.11.0"
-FISSION_WORKFLOWS_VER="0.5.0"
+FISSION_WORKFLOWS_VER="0.6.0"
 
 
 echo "$alert > Starting refresh...$reset"

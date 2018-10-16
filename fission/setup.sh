@@ -31,7 +31,7 @@ readonly alert=$(tput bold; tput setaf 10)
 MINIKUBE_VER_M="0.30"
 MINIKUBE_VER_m="0"
 FISSION_VER="0.11.0"
-FISSION_WORKFLOWS_VER="0.5.0"
+FISSION_WORKFLOWS_VER="0.6.0"
 
 echo "$alert > Starting install...$reset"
 echo "$alert > Dependeing on the connection and your device this might take a few minutes...$reset"
