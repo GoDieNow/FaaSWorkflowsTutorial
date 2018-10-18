@@ -28,9 +28,11 @@ source ../src/front_functions.sh
 #
 ################################################################################
 
+echo "$alert > Let's start with the preparations for the example...$reset"
 # First we get a new bin.
 getBin()
 
+echo "$alert > Now we turn the generic functions into the ones Fission expects...$reset"
 # Then we transform the simple JS functions into the ones Fission will be
 # expecting to get.
 for i in "${srcFiles[@]}"
@@ -47,25 +49,30 @@ done
 #
 ################################################################################
 
+echo "$alert > Now let's set up the enviroment...$reset"
 # First we create the NodeJS enviroment
 fission env create --name nodejs --image fission/node-env --externalnetwork
 
+echo "$alert > Let's add the functions...$reset"
 # Now we deploy our functions into into that enviroment
 for i in "${srcFiles[@]}"
 do
 	fission fn create --name $i --code $gitdir/src/$i.js --env nodejs
 done
 
+echo "$alert > And let's test them to check everything went well...$reset"
 # Let's just check everything is right there...
 for i in "${srcFiles[@]}"
 do
 	fission fn test --name $i
 done
 
+echo "$alert > Now let's deploy the workflow and test that everything went well...$reset"
 # Now let's deploy the workflow and test it went well
 fission fn create --name simpleTodo --env workflow --src $gitdir/src/fission_todosApp.wf.yaml
 
 fission fn test --name simpleTodo
 
+echo "$alert > Since everything is in place, let's start the front-end...$reset"
 # Now let's the fun begin! :D
 cliTodosApp(fission)
