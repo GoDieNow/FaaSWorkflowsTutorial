@@ -32,6 +32,9 @@ echo "$alert > Let's start with the preparations for the example...$reset"
 # First we get a new bin.
 getBin()
 
+# A break-point..
+read -s
+
 echo "$alert > Now we turn the generic functions into the ones Fission expects...$reset"
 # Then we transform the simple JS functions into the ones Fission will be
 # expecting to get.
@@ -53,6 +56,9 @@ echo "$alert > Now let's set up the enviroment...$reset"
 # First we create the NodeJS enviroment
 fission env create --name nodejs --image fission/node-env --externalnetwork
 
+# A break-point..
+read -s
+
 echo "$alert > Let's add the functions...$reset"
 # Now we deploy our functions into into that enviroment
 for i in "${srcFiles[@]}"
@@ -67,11 +73,21 @@ do
 	fission fn test --name $i
 done
 
+# A break-point..
+read -s
+
 echo "$alert > Now let's deploy the workflow and test that everything went well...$reset"
 # Now let's deploy the workflow and test it went well
 fission fn create --name simpleTodo --env workflow --src $gitdir/src/fission_todosApp.wf.yaml
 
 fission fn test --name simpleTodo
+
+# A break-point..
+read -s
+
+
+# Front-end
+################################################################################
 
 echo "$alert > Since everything is in place, let's start the front-end...$reset"
 # Now let's the fun begin! :D
