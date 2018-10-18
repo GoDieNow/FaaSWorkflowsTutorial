@@ -78,9 +78,9 @@ read -s
 
 echo "$alert > Now let's deploy the workflow and test that everything went well...$reset"
 # Now let's deploy the workflow and test it went well
-fission fn create --name simpleTodo --env workflow --src $gitdir/src/fission_todosApp.wf.yaml
+fission fn create --name simpleTodos --env workflow --src $gitdir/src/fission_todosApp.wf.yaml
 
-fission fn test --name simpleTodo
+fission fn test --name simpleTodos
 
 # A break-point..
 read -s
