@@ -21,4 +21,51 @@
 source ../src/front_functions.sh
 
 
+# Preparations
 #
+# Due to have the source code of the functions have been implemented we need to
+# do a couple of things in order to get the real functions we're going to use.
+#
+################################################################################
+
+# First we get a new bin.
+getBin()
+
+# Then we transform the simple JS functions into the ones Fission will be
+# expecting to get.
+for i in "${srcFiles[@]}"
+do
+	cat $gitdir/src/fission_exporter.js >> $gitdir/src/$i.js
+done
+
+
+# Enviroment
+#
+# We will set the enviroment and deploy the functions in the "old fashion way"™
+# (AKA as if we've done it manually) mainly because when using the specs or the
+# source-pkg ways they sometimes "just won't work"™
+#
+################################################################################
+
+# First we create the NodeJS enviroment
+fission env create --name nodejs --image fission/node-env --externalnetwork
+
+# Now we deploy our functions into into that enviroment
+for i in "${srcFiles[@]}"
+do
+	fission fn create --name $i --code $gitdir/src/$i.js --env nodejs
+done
+
+# Let's just check everything is right there...
+for i in "${srcFiles[@]}"
+do
+	fission fn test --name $i
+done
+
+# Now let's deploy the workflow and test it went well
+fission fn create --name simpleTodo --env workflow --src $gitdir/src/fission_todosApp.wf.yaml
+
+fission fn test --name simpleTodo
+
+# Now let's the fun begin! :D
+cliTodosApp(fission)
