@@ -28,6 +28,7 @@ function main(params) {
 
     }
 
+    // In case the wip-list is empty (or just doesn't exists)
     if (!data.wip) {
         data.wip = {};
     }

@@ -10,6 +10,7 @@ function main(params) {
 
     var data = params.data;
 
+    // In case the todo-list is empty (or just doesn't exists)
     if (!data.todo) {
         data.todo = {};
     }

@@ -28,6 +28,7 @@ function main(params) {
 
     }
 
+    // In case the done-list is empty (or just doesn't exists)
     if (!data.done) {
         data.done = {};
     }
