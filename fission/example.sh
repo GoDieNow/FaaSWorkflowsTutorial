@@ -30,7 +30,7 @@ source ../src/front_functions.sh
 
 echo "$alert > Let's start with the preparations for the example...$reset"
 # First we get a new bin.
-getBin()
+getBin
 
 # A break-point..
 read -s
@@ -91,4 +91,4 @@ read -s
 
 echo "$alert > Since everything is in place, let's start the front-end...$reset"
 # Now let's the fun begin! :D
-cliTodosApp(fission)
+cliTodosApp fission

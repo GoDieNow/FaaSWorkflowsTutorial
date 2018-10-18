@@ -49,7 +49,7 @@ done
 fsh app delete FWTt/simpleTodos
 
 # Now we call the restore function..
-resetWithBin()
+resetWithBin
 
 # Enviroment
 #
@@ -96,4 +96,4 @@ read -s
 
 echo "$alert > Since everything is in place, let's start the front-end...$reset"
 # Now let's the fun begin! :D
-cliTodosApp(composer)
+cliTodosApp composer
