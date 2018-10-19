@@ -95,7 +95,7 @@ function call() {
 # using call*
 function get() {
 
-    cat $TDFile | jq -cM ".$1" | sed "s/,/\n/g" | sed -r "s/(\{*\")([0-9]*)(\":)(.*)/\2\ \-\>\ \4/g" | tr -d '}' | tr -d '{' | sed "s/^null//"
+    cat $TDFile | jq -cM ".$1" | sed "s/,/\n/g" | sed -r "s/(\{*\")([0-9]*)(\":)(.*)/\\t\2\ \-\>\ \4/g" | tr -d '}' | tr -d '{' | sed "s/^null//"
 
 }
 
@@ -122,13 +122,15 @@ function cliTodosApp() {
         wips="$(get "data.wip")"
         dones="$(get "data.done")"
 
-        # TODO check errors
+        # Welcome to the app
+        echo -e "${alert} > Welcome to the Simple ToDos App!\n > Here you have your ToDos$reset"
+
+        # Checks for erros and inform about them..
         if ! [[ -z "${errors}" ]]; then
-            echo -e "$error > Something failed! Error received:\n $errors $reset"
+            echo -e "$error >> Something failed! Error received:\n >>>>> $errors $reset"
         fi
 
         # Show the data
-        echo -e "${alert}Welcome to the Simple ToDos App!\n-> Here you have your ToDos$reset"
         echo -e "\n$todo ToDos:\n\n$todos $reset\n"
         echo -e "$wip WiPs:\n\n$wips $reset\n"
         echo -e "$done Done:\n\n$dones $reset\n"
