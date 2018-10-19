@@ -141,6 +141,7 @@ function cliTodosApp() {
         case ${order[0]} in
             "quit"|"exit"|"q")
                 echo "$alert > Don't forget to do your ToDos! Bye-bye! :) $reset"
+                rm -rf $TDFile
                 exit 0
                 ;;
             *)
